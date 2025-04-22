@@ -1,6 +1,6 @@
 # **aMMDr - aMagic Markdown Reader**  
 ### САЙТ ЗА 5 СЕКУНД из `*.md` файлов
-В этой папке рабочие версии.
+В этой папке рабочие версии.  
 
 https://github.com/aMagicMorgen/release/tree/dff07a01730773f5fbd3442a39bb1516da2ed168/ammdr
 
