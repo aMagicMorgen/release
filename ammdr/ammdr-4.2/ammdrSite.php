@@ -77,6 +77,46 @@ class ammdrSite
     /**
      * Рекурсивное сканирование директории
      */
+    	 private static function scanDirectory($dir, $baseDir)
+{
+    $structure = [];
+    $items = scandir($dir);
+    
+    foreach ($items as $item) {
+        if (in_array($item, self::$excludedDirs)) {
+            continue;
+        }
+        
+        $path = $dir . '/' . $item;
+        // Исправленное формирование относительного пути
+        $relativePath = ltrim(substr($path, strlen($baseDir)), '/');
+        #$relativePath = ltrim(str_replace(realpath($baseDir), '', realpath($path)), '/');
+        if (is_dir($path)) {
+            $node = [
+                'type' => 'directory',
+                'path' => $relativePath,
+                'children' => self::scanDirectory($path, $baseDir)
+            ];
+            
+            if (file_exists($path . '/README.md')) {
+                $node['readme'] = $relativePath . '/README.md';
+                $node['preview'] = self::getMarkdownPreview($path . '/README.md');
+            }
+            
+            $structure[$item] = $node;
+        } elseif (pathinfo($path, PATHINFO_EXTENSION) === 'md') {
+            $structure[$item] = [
+                'type' => 'file',
+                'path' => $relativePath, // Теперь сохранится правильное имя файла
+                'preview' => self::getMarkdownPreview($path)
+            ];
+        }
+    }
+    
+    return $structure;
+}
+
+/*
     private static function scanDirectory($dir, $baseDir)
     {
         $structure = [];
@@ -114,7 +154,7 @@ class ammdrSite
         
         return $structure;
     }
-
+*/
     /**
      * Получение превью из Markdown-файла
      */
