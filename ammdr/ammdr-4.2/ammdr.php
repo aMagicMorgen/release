@@ -232,7 +232,7 @@ $menuHtml = $menu->generateMenu($menu->getFiles(), 'tree');
 					echo '<span id="md">ВЫБИРАЙТЕ ТЕМЫ В МЕНЮ СЛЕВА</span>
             </h1>
         </div></section>';
-                    echo "<zero-md src='" . htmlspecialchars($safeFile) . "'></zero-md>";
+                    echo "<zero-md src='" . htmlspecialchars($_GET['md']) . "'></zero-md>";
                 }?>
 				<?php else: ?>
                 <h1>Добро пожаловать!</h1>
