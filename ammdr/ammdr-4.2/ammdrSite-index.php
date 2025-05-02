@@ -256,6 +256,7 @@ function renderMarkdown($text) {
                         <?php foreach ($menuItems as $name => $item): ?>
     <section id="<?= htmlspecialchars($name) ?>" class="mb-12 p-6 rounded-xl shadow-lg bg-gradient-to-br from-white to-gray-50 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
         <!-- Заголовок секции с градиентом -->
+	    <?php if(!strpos($name, '.')) { ?>
         <div class="mb-6 p-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600">
             <h1 class="text-3xl font-bold text-white">
                 <?= $menu_name; ?>
@@ -264,7 +265,7 @@ function renderMarkdown($text) {
                 </a>
             </h1>
         </div>
-        
+        <?php } ?>
         <?php if ($item['type'] === 'directory'): ?>
             <!-- Контент директории -->
             <div class="directory-content bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-inner border border-gray-200/50">
