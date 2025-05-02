@@ -68,7 +68,7 @@ class ammdrSite
 
         if (file_put_contents(
             self::$outputFile,
-            json_encode($structure, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+            json_encode($structure, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
         ) === false) {
             throw new Exception("Failed to write output file: " . self::$outputFile);
         }
