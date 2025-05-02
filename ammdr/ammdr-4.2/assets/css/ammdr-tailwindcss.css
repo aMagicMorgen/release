@@ -1,0 +1,77 @@
+/*@config "./tailwindcss-config.js";*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+            .full-title { display: block; }
+            .short-title { display: none; }
+            @media (max-width: 640px) {
+                .full-title { display: none; }
+                .short-title { display: block; }
+            }
+            
+            #main-nav {
+                transform: translateX(-100%);
+                @apply fixed top-0 left-0 h-full w-64 bg-gray-800 text-white z-50 transition-transform duration-300 ease-in-out;
+            }
+            
+            #main-nav.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn span {
+                @apply block w-6 h-0.5 bg-white mb-1 transition-all duration-300;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            
+            .content-wrapper {
+                @apply pl-0;
+            }
+            
+            @media (min-width: 768px) {
+                #main-nav {
+                    transform: translateX(0);
+                    @apply relative h-auto w-auto bg-transparent text-gray-800 z-auto;
+                }
+                
+                .content-wrapper {
+                    @apply pl-64;
+                }
+            }
+        }
+		
+	#main-nav {
+        scrollbar-width: thin;
+        scrollbar-color: #3b82f6 #1f2937;
+    }
+    
+    #main-nav::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #main-nav::-webkit-scrollbar-track {
+        background: #1f2937;
+    }
+    
+    #main-nav::-webkit-scrollbar-thumb {
+        background-color: #3b82f6;
+        border-radius: 3px;
+    }
+    
+    .menu-item a.active {
+        background-color: #1d4ed8;
+        color: white;
+        font-weight: 500;
+    }
